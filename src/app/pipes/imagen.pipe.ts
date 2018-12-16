@@ -11,10 +11,10 @@ export class ImagenPipe implements PipeTransform {
     let url = URL_SERVICIOS + '/img';
 
     if (!img) {
-      return url + '/undefinied';
+      return url + '/usuarios/xxx';
     }
 
-    if (img.startsWith('https')) {
+    if (img.indexOf('https') >= 0) {
       return img;
     }
 
@@ -30,7 +30,7 @@ export class ImagenPipe implements PipeTransform {
         break;
       default:
         console.log('tipo de imagen no existe [usuarios, medicos, hospitales]');
-        url += 'undefinied';
+        url += '/usuarios/xxx';
     }
 
     return url;

@@ -41,13 +41,16 @@ export class ProfileComponent implements OnInit {
 
     if (!archivo.type.startsWith('image')) {
       swal('Sólo imágenes', 'El archivo seleccionado no es una imágen', 'error');
+      this.imagenSubir = null;
+      return;
     }
 
     this.imagenSubir = archivo;
 
-    const reader = new FileReader();
-    const urlImagenTemp = reader.readAsDataURL(archivo);
+    let reader = new FileReader();
+    let urlImagenTemp = reader.readAsDataURL(archivo);
 
+    // @ts-ignore
     reader.onloadend = () => this.imagenTemp = reader.result;
   }
 
