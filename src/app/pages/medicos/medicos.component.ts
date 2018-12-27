@@ -14,9 +14,9 @@ export class MedicosComponent implements OnInit {
 
   medicos: Medico[] = [];
 
-  desde: number = 0;
+  desde = 0;
 
-  totalMedicos: number = 0;
+  totalMedicos = 0;
 
   cargando = true;
 
@@ -42,7 +42,7 @@ export class MedicosComponent implements OnInit {
 
   cambiarDesde(valor: number) {
 
-    let desde = this.desde + valor;
+    const desde = this.desde + valor;
 
     if (desde >= this.totalMedicos) {
       return;

@@ -25,7 +25,7 @@ export class MedicoComponent implements OnInit {
               public activatedRoute: ActivatedRoute,
               public _modalUploadService: ModalUploadService) {
     activatedRoute.params.subscribe(params => {
-      let id = params['id'];
+      const id = params['id'];
 
       if (id !== 'nuevo') {
         this.obtenerMedico(id);

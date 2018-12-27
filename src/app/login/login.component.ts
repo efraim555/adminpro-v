@@ -16,7 +16,7 @@ declare const gapi: any;
 export class LoginComponent implements OnInit {
 
   email: string;
-  recuerdame: boolean = false;
+  recuerdame = false;
   auth2: any;
 
   constructor(public router: Router,
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
       // let profile = googleUser.getBasicProfile();
 
-      let token = googleUser.getAuthResponse().id_token;
+      const token = googleUser.getAuthResponse().id_token;
 
       this._usuarioService.loginGoogle(token)
         .subscribe(() => window.location.href = '#/dashboard');
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario(
+    const usuario = new Usuario(
       null,
       forma.value.email,
       forma.value.password

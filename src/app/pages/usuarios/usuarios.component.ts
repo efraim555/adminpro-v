@@ -13,9 +13,9 @@ declare var swal: any;
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[] = [];
-  desde: number = 0;
+  desde = 0;
 
-  totalRegistros: number = 0;
+  totalRegistros = 0;
   cargando = true;
 
   constructor(public _usuarioService: UsuarioService,
@@ -42,7 +42,7 @@ export class UsuariosComponent implements OnInit {
 
   cambiarDesde(valor: number) {
 
-    let desde = this.desde + valor;
+    const desde = this.desde + valor;
 
     if (desde >= this.totalRegistros) {
       return;

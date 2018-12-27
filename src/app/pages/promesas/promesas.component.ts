@@ -19,7 +19,7 @@ export class PromesasComponent implements OnInit {
 
       let contador = 0;
 
-      let intervalo = setInterval(() => {
+      const intervalo = setInterval(() => {
         contador += 1;
         console.log(contador);
         if (contador === 3) {

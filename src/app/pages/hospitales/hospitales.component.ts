@@ -14,9 +14,9 @@ export class HospitalesComponent implements OnInit {
 
   hospitales: Hospital[] = [];
 
-  desde: number = 0;
+  desde = 0;
 
-  totalHospitales: number = 0;
+  totalHospitales = 0;
   cargando = true;
 
   constructor(public _hospitalService: HospitalService,
@@ -43,7 +43,7 @@ export class HospitalesComponent implements OnInit {
 
   cambiarDesde(valor: number) {
 
-    let desde = this.desde + valor;
+    const desde = this.desde + valor;
 
     if (desde >= this.totalHospitales) {
       return;

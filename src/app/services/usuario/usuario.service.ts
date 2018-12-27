@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {URL_SERVICIOS} from '../../config/config';
 import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {SubirArchivoService} from '../subir-archivo/subir-archivo.service'; //Avoid circular dependency!!
+import {SubirArchivoService} from '../subir-archivo/subir-archivo.service'; // Avoid circular dependency!!
 import {throwError} from 'rxjs';
 
 @Injectable({
@@ -58,7 +58,7 @@ export class UsuarioService {
       localStorage.removeItem('email');
     }
 
-    let url = URL_SERVICIOS + '/login';
+    const url = URL_SERVICIOS + '/login';
 
     return this.http.post(url, usuario)
       .pipe(
@@ -75,7 +75,7 @@ export class UsuarioService {
 
   loginGoogle(token: string) {
 
-    let url = URL_SERVICIOS + '/login/google';
+    const url = URL_SERVICIOS + '/login/google';
 
     return this.http.post(url, {token})
       .pipe(
@@ -100,9 +100,29 @@ export class UsuarioService {
     this.router.navigate(['/login']);
   }
 
+  renovarToken() {
+
+    let url = URL_SERVICIOS + '/login/renovarToken';
+    url += '?token=' + this.token;
+
+    return this.http.get(url)
+      .pipe(
+        map((res: any) => {
+          this.token = res.token;
+          localStorage.setItem('token', this.token);
+          return true;
+        }),
+        catchError(err => {
+          swal('Error', 'El token no se pudo renovar, cerrando sesión...', 'error');
+          this.logout();
+          return throwError(err);
+        })
+      );
+  }
+
   crearUsuario(usuario: Usuario) {
 
-    let url = URL_SERVICIOS + '/usuario';
+    const url = URL_SERVICIOS + '/usuario';
 
     return this.http.post(url, usuario)
       .pipe(
@@ -126,7 +146,7 @@ export class UsuarioService {
       map((res: any) => {
 
         if (usuario._id === this.usuario._id) {
-          let usuarioDB: Usuario = res.usuario;
+          const usuarioDB: Usuario = res.usuario;
           this.guardarStorage(usuarioDB._id, this.token, usuarioDB, this.menu);
         }
 

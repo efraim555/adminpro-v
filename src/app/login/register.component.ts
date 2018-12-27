@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
   sonIguales(campo1: string, campo2: string) {
     return (group: FormGroup) => {
 
-      let pass1 = group.controls[campo1].value;
-      let pass2 = group.controls[campo2].value;
+      const pass1 = group.controls[campo1].value;
+      const pass2 = group.controls[campo2].value;
 
       if (pass1 === pass2) {
         return null;
@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario(
+    const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.correo,
       this.forma.value.password,
